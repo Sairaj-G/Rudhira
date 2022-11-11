@@ -1,16 +1,11 @@
 # rudhira
 
-A new Flutter project.
+Rudhira referring to blood, in sanskrit is an app developed by the team Fourier Transform as a part of the hackathon. This app aims at providing an interface for blood donors and reciepients who are in need of urgent blood.
 
-## Getting Started
+The app allows people in need of blood to send a request for the blood needed with their contact details. A donor who wishes to donate blood will be able to see all these requests and will be able to donate to them.
 
-This project is a starting point for a Flutter application.
+More features which include:
+-> A donor's side for the app, where they can donate blood to whom they can donate. Once donated, the request will get deleted from the database.
+-> A donor's pofile which will include all his contact details.
+-> A tab connecting IITG- Hospital for blood donation details to make it easier for donors and reciepients.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
