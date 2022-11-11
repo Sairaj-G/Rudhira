@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rudhira/components/buttons.dart';
 import 'package:rudhira/components/text_form_field.dart';
+import 'package:rudhira/screens/sign_up.dart';
 import 'home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import  'package:firebase_core/firebase_core.dart';
+
 
 TextEditingController userEmail = TextEditingController();
 TextEditingController userPassword = TextEditingController();
+
+final auth = FirebaseAuth.instance;
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -71,7 +78,8 @@ class _SignInPageState extends State<SignInPage> {
               tag : "LOGIN",
               child: Button(
                 text: "Login",
-                action: () {
+                action: () async {
+                  await signIn(userEmail.text, userPassword.text);
                   Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
                 },
               ),
@@ -82,4 +90,9 @@ class _SignInPageState extends State<SignInPage> {
     );
 
   }
+}
+
+Future <void> signIn(String email, String password) async{
+  await auth.signInWithEmailAndPassword(email: email, password: password);
+
 }

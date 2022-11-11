@@ -3,11 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'components/buttons.dart';
 import 'screens/login_page.dart';
 import 'package:rudhira/screens/sign_up.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import  'package:firebase_core/firebase_core.dart';
 
 
 const String loginPageHeading = "RUDHIRA";
 
-void main() {
+Future <void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MaterialApp(
     home: LoginPage(),
   ));
@@ -68,7 +74,6 @@ class _LoginPageState extends State<LoginPage> {
 
             Hero(tag: "SIGNUP",
                 child: Button(text: "SIGN UP", action: (){Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignUpPage()));})),
-
           ],
         ),
     );

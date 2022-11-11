@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rudhira/components/buttons.dart';
@@ -18,6 +19,7 @@ class _NewRequestsState extends State<NewRequests> {
   @override
   Widget build(BuildContext context) {
 
+    final db = FirebaseFirestore.instance;
     TextEditingController needyName = TextEditingController();
     TextEditingController phoneNumber = TextEditingController();
 
@@ -67,7 +69,19 @@ class _NewRequestsState extends State<NewRequests> {
                   ],
                 ),
                 SizedBox(height : 30),
-                Button(text:"Post Request", action: (){}),
+                Button(text:"Post Request",
+
+                    action: ()async{
+                      final request = <String, dynamic>{
+                        "BloodGroup": dropdownvalue,
+                        "Name": needyName.text,
+                        "PhoneNumber": phoneNumber.text,
+                      };
+
+                      await db.collection("Requests").add(request);
+                      Navigator.pop(context);
+                  }
+                ),
 
               ],
 

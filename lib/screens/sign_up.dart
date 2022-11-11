@@ -3,7 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rudhira/components/text_form_field.dart';
 import '../components/buttons.dart';
 import 'home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import  'package:firebase_core/firebase_core.dart';
 
+
+final auth = FirebaseAuth.instance;
 TextEditingController userEmail = TextEditingController();
 TextEditingController userPassword = TextEditingController();
 TextEditingController confirmUserPassword = TextEditingController();
@@ -95,7 +100,10 @@ class _SignUpPageState extends State<SignUpPage> {
               tag: "SIGNUP",
               child: Button(
                 text: "Sign Up",
-                action: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));},
+                action: () async{
+                  await signUp(userEmail.text, userPassword.text);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
+                  },
               ),
             ),
           ],
@@ -103,4 +111,9 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
+}
+
+
+Future <void> signUp (String email, String password) async{
+  await auth.createUserWithEmailAndPassword(email: email, password: password) ;
 }
