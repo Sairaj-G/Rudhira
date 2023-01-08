@@ -9,7 +9,6 @@ class CustomTextFormField extends StatefulWidget {
   TextInputType? inputType;
 
 
-
   CustomTextFormField ({this.controller, this.hintText, this.labelText, this.prefixIcon, this.inputType});
 
   @override
